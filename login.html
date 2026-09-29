@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connexion — MEDADOM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+<section class="page">
+  <div class="hero">
+    <div class="shelf"></div>
+    
+    <!-- VOTRE PHOTO UNIQUE (Médecin + patient ensemble) -->
+    <img src="doctor_patient.png" alt="Médecin et patient" class="unique-photo">
+
+  </div>
+
+  <div class="logo-row">
+    <span class="mark">
+        <img src="Medadom_texte.png" alt="Logo MEDADOM" class="logo-png">
+    </span>
+  </div>
+
+  <h2 class="headline">Consultez un médecin<br>dès maintenant</h2>
+  <div class="pill2">
+    <span class="ico">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4079b8" stroke-width="2"><path d="M12 3c-3 3-4 6-4 9a4 4 0 0 0 8 0c0-3-1-6-4-9z"/></svg>
+    </span>
+    <span id="typewriter">&nbsp;</span><span class="caret"></span>
+  </div>
+
+  <!-- Redirection pour S'inscrire -->
+  <a href="https://app.medadom.com/register/personal-information" target="_blank" class="btn">S'inscrire</a>
+
+  <!-- Redirection pour Se connecter -->
+  <a href="https://app.medadom.com/login" target="_blank" class="btn-outline">Se connecter</a>
+</section>
+
+<script>
+  const motifs = ["Maux de gorge","Diarrhée ou vomissement","Renouvellement d'ordonnance","Fièvre","Cystite"];
+  const twEl = document.getElementById('typewriter');
+  let mIndex = 0, cIndex = 0, deleting = false;
+  function typeLoop(){
+    const current = motifs[mIndex];
+    if(!deleting){
+      cIndex++;
+      twEl.textContent = current.slice(0, cIndex);
+      if(cIndex === current.length){ deleting = true; setTimeout(typeLoop, 1400); return; }
+      setTimeout(typeLoop, 60);
+    } else {
+      cIndex--;
+      twEl.textContent = current.slice(0, cIndex) || '\u00A0';
+      if(cIndex === 0){ deleting = false; mIndex = (mIndex + 1) % motifs.length; setTimeout(typeLoop, 400); return; }
+      setTimeout(typeLoop, 30);
+    }
+  }
+  typeLoop();
+</script>
+</body>
+</html>
+
